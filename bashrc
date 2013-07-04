@@ -104,3 +104,5 @@ if [ -f ~/.localrc ]; then
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh

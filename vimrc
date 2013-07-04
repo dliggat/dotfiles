@@ -6,4 +6,4 @@ set foldmethod=manual
 "ddlet CommandTMaxFiles = 20000
 let g:ctrlp_max_files = 0
 let NERDTreeShowHidden=1
-set transparency=4
+
