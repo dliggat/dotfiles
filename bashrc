@@ -6,26 +6,26 @@ function parse_git_branch {
 }
 
 function prompt_suffix {
-  hour=`date +%k`  # Get current hour in 24-hr format.
-  if ((0<=$hour && $hour<=6))
-  then
-    message="🌙"  # Crescent moon.
-  elif ((7<=$hour && $hour<=11))
-  then
-    message="☕"  # Coffee cup.
-  elif ((12<=$hour && $hour<=13))
-  then
-    message="🍴"  # Knife and fork.
-  elif ((14<=$hour && $hour<=17))
-  then
-    message="💡"  # Lightbulb.
-  elif ((18<=$hour && $hour<=23))
-  then
-    message="🍺"  # Beer mug.
-  else
-    message="something wrong"  # Should never happen.
-  fi
-  echo "$message  "
+  # hour=`date +%k`  # Get current hour in 24-hr format.
+  # if ((0<=$hour && $hour<=6))
+  # then
+  #   message="🌙"  # Crescent moon.
+  # elif ((7<=$hour && $hour<=11))
+  # then
+  #   message="☕"  # Coffee cup.
+  # elif ((12<=$hour && $hour<=13))
+  # then
+  #   message="🍴"  # Knife and fork.
+  # elif ((14<=$hour && $hour<=17))
+  # then
+  #   message="💡"  # Lightbulb.
+  # elif ((18<=$hour && $hour<=23))
+  # then
+  #   message="🍺"  # Beer mug.
+  # else
+  #   message="something wrong"  # Should never happen.
+  # fi
+  echo "$ "
 }
 
 function shortpath {
