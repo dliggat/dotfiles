@@ -3,6 +3,7 @@
   "auto_match_enabled": false,
   "binary_file_patterns":
   [
+    "*.doc",
     "*.jpg",
     "*.jpeg",
     "*.png",
