@@ -71,6 +71,8 @@ export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
+BOXEN=/opt/boxen/repo
+
 # My custom environment variables and aliases.
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
