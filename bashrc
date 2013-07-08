@@ -5,6 +5,24 @@ function parse_git_branch {
   echo "("${ref#refs/heads/}")"
 }
 
+# A consistent title for 'paperless' documents.
+# Usage:
+#    $ title Apple ipod Receipt
+#    $ [2013-07-08 => apple ipod receipt] copied to clipboard.
+# Then paste directly into Evernote, etc.
+function title {
+  title_str=`date '+%Y-%m-%d'`
+  title_str="$title_str =>"
+  while [ $1 ]
+  do
+    lower=`echo $1 | awk '{print tolower($0)}'`  # Lower() the string, purely for consistency.
+    title_str="$title_str $lower"
+    shift
+  done
+  echo $title_str | pbcopy
+  echo "[$title_str] copied to clipboard."
+}
+
 function prompt_suffix {
   # hour=`date +%k`  # Get current hour in 24-hr format.
   # if ((0<=$hour && $hour<=6))
