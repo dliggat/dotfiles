@@ -19,6 +19,7 @@ function title {
     title_str="$title_str $lower"
     shift
   done
+  title_str="$title_str (Paperless)"
   echo $title_str | pbcopy
   echo "[$title_str] copied to clipboard."
 }
