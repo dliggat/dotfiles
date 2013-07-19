@@ -91,6 +91,7 @@ export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
 BOXEN=/opt/boxen/repo
+DOTFILES=~/src/dotfiles
 
 # My custom environment variables and aliases.
 alias beg='bundle exec guard'
