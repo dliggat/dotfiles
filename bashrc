@@ -58,15 +58,6 @@ function shortpath {
   echo $newPWD
 }
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-#if [ -f `brew --prefix`/etc/bash_completion ]; then
-#    . `brew --prefix`/etc/bash_completion
-#fi
-
 # Taken from http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/
 # Also read this: http://superuser.com/questions/246625/bash-command-prompt-overwrites-the-current-line
 # Use the start and stop tokens to define a period of time for color to be activated.
@@ -81,7 +72,6 @@ RET_VALUE='$(echo $RET)'
 export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
-export PATH=/usr/local/bin:$PATH
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 
 # How to set ls colors: http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
@@ -100,16 +90,16 @@ alias be='bundle exec'
 alias clean='pbpaste | pbcopy'
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
-alias gs='git status'
-alias gcm='git checkout master'
-alias gch='git checkout'
-alias gco='git commit'
-alias gb='git branch'
-alias gd='git diff'
-alias gpom='git push origin master'
-alias gphm='git push heroku master'
+# alias gs='git status'
+# alias gcm='git checkout master'
+# alias gch='git checkout'
+# alias gco='git commit'
+# alias gb='git branch'
+# alias gd='git diff'
+# alias gpom='git push origin master'
+# alias gphm='git push heroku master'
 alias grep='grep --color=auto'
-alias grepi='grep -i'
+# alias grepi='grep -i'
 alias rakeall='time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear; echo "DONE ALL THE RAKES"'
 alias rc='rails console'
 alias rr='rails server'
@@ -125,6 +115,5 @@ if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
