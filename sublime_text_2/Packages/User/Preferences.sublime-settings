@@ -36,6 +36,10 @@
     100
   ],
   "soda_classic_tabs": true,
+  "sublimelinter_executable_map":
+  {
+    "ruby": "/opt/boxen/rbenv/shims/ruby"
+  },
   "tab_completion": true,
   "tab_size": 2,
   "translate_tabs_to_spaces": true,

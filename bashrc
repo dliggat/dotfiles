@@ -69,7 +69,8 @@ START="\[\e["
 STOP="\[\e[m\]"
 PROMPT_COMMAND='RET=$?;'
 RET_VALUE='$(echo $RET)'
-export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
+# export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
+export PROMPT_COMMAND='PS1="$START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $START$YELLOW$(prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
