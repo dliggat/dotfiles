@@ -14,9 +14,9 @@ function clean {
 
 # Rails development - drop, create and re-seed development database.
 function rakeall {
-  echo "Raking...\n"
+  echo "Raking..."
   time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
-  echo "All raked.\n"
+  echo "All raked."
 }
 
 # A consistent title for 'paperless' documents.
