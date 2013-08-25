@@ -1,8 +1,22 @@
-## Personal bashrc file for OS X machines. Contains aliases, env vars, etc.
+#!/bin/bash
 
-function parse_git_branch {
+# Current git branch, or empty string.
+function git_branch_ps1 {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "("${ref#refs/heads/}")"
+}
+
+# Strip out goddamn rich text formatting from text.
+function clean {
+  echo 'Formatting be gone with you!'
+  pbpaste | pbcopy
+}
+
+# Rails development - drop, create and re-seed development database.
+function rakeall {
+  echo "Raking...\n"
+  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
+  echo "All raked.\n"
 }
 
 # A consistent title for 'paperless' documents.
@@ -24,6 +38,7 @@ function title {
   echo "[$title_str] copied to clipboard."
 }
 
+# What to display as prompt suffix in Bash. Most sensibly represented as '$'.
 function prompt_suffix {
   # hour=`date +%k`  # Get current hour in 24-hr format.
   # if ((0<=$hour && $hour<=6))
@@ -70,7 +85,7 @@ STOP="\[\e[m\]"
 PROMPT_COMMAND='RET=$?;'
 RET_VALUE='$(echo $RET)'
 # export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
-export PROMPT_COMMAND='PS1="$START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $START$YELLOW$(prompt_suffix)$STOP"'
+export PROMPT_COMMAND='PS1="$START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(git_branch_ps1)$STOP $START$YELLOW$(prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
@@ -81,27 +96,13 @@ export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
-BOXEN=/opt/boxen/repo
-DOTFILES=~/src/dotfiles
-
 # My custom environment variables and aliases.
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
 alias be='bundle exec'
-alias clean='pbpaste | pbcopy'
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
-# alias gs='git status'
-# alias gcm='git checkout master'
-# alias gch='git checkout'
-# alias gco='git commit'
-# alias gb='git branch'
-# alias gd='git diff'
-# alias gpom='git push origin master'
-# alias gphm='git push heroku master'
 alias grep='grep --color=auto'
-# alias grepi='grep -i'
-alias rakeall='time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear; echo "DONE ALL THE RAKES"'
 alias rc='rails console'
 alias rr='rails server'
 alias sha1sum='openssl sha1'
