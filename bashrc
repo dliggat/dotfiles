@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Current git branch, or empty string.
-function git_branch_ps1 {
+# Current git branch or nothing.
+function br {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "("${ref#refs/heads/}")"
+  echo "${ref#refs/heads/}"
 }
 
 # Strip out goddamn rich text formatting from text.
@@ -14,7 +14,7 @@ function clean {
 
 # Rails development - drop, create and re-seed development database.
 function rakeall {
-  echo "Raking..."
+  echo "Rake rake rake..."
   time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
   echo "All raked."
 }
@@ -22,7 +22,7 @@ function rakeall {
 # A consistent title for 'paperless' documents.
 # Usage:
 #    $ title Apple ipod Receipt
-#    $ [2013-07-08 => apple ipod receipt] copied to clipboard.
+#    $ [2013-07-08 => apple ipod receipt (Paperless)] copied to clipboard.
 # Then paste directly into Evernote, etc.
 function title {
   title_str=`date '+%Y-%m-%d'`
@@ -39,7 +39,7 @@ function title {
 }
 
 # What to display as prompt suffix in Bash. Most sensibly represented as '$'.
-function prompt_suffix {
+function _prompt_suffix {
   # hour=`date +%k`  # Get current hour in 24-hr format.
   # if ((0<=$hour && $hour<=6))
   # then
@@ -62,7 +62,7 @@ function prompt_suffix {
   echo "$ "
 }
 
-function shortpath {
+function _shortpath {
   #   How many characters of the $PWD should be kept
   local pwd_length=30
   local lpwd="${PWD/#$HOME/~}"
@@ -71,6 +71,16 @@ function shortpath {
     else newPWD="$(echo -n $lpwd)"
   fi
   echo $newPWD
+}
+
+# Display current branch in PS1.
+function _git_branch_ps1 {
+  branch_name=`br`
+  if [ -n "$branch_name" ]; then
+    echo "($branch_name)"
+  else
+    return  # Not a git repo.
+  fi
 }
 
 # Taken from http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/
@@ -85,7 +95,7 @@ STOP="\[\e[m\]"
 PROMPT_COMMAND='RET=$?;'
 RET_VALUE='$(echo $RET)'
 # export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
-export PROMPT_COMMAND='PS1="$START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(git_branch_ps1)$STOP $START$YELLOW$(prompt_suffix)$STOP"'
+export PROMPT_COMMAND='PS1="$START$YELLOW\u@\h:$STOP $START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
 export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
