@@ -106,18 +106,19 @@ export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
-# My custom environment variables and aliases.
+# Rails aliases.
+alias rc='rails console'
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
+alias spec='rspec -b -c -f s'
 alias be='bundle exec'
+
+# My custom aliases.
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
-alias rc='rails console'
-alias rr='rails server'
-alias sha1sum='openssl sha1'
-alias spec='rspec -b -c -f s'
-alias ts='date +"%Y-%m-%d %H:%M:%S" | perl -ne "chomp and print" | pbcopy'
+alias ts='date +"%Y-%m-%d %H:%M:%S"'
+alias pgen='pwgen -sy 20'
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
