@@ -19,6 +19,17 @@ function rakeall {
   echo "All raked."
 }
 
+# Get current timestamp. Use option '-c' to copy to clipboard.
+function ts {
+  iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
+  if [ "$1" == "-c" ]; then
+    echo -n $iso_stamp | pbcopy
+    echo "[$iso_stamp] copied to clipboard."
+  else
+    echo $iso_stamp
+  fi
+}
+
 # A consistent title for 'paperless' documents.
 # Usage:
 #    $ title Apple ipod Receipt
@@ -117,7 +128,6 @@ alias be='bundle exec'
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
-alias ts='date +"%Y-%m-%d %H:%M:%S"'
 alias pgen='pwgen -sy 20'
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
