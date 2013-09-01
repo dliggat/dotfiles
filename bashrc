@@ -51,32 +51,34 @@ function title {
 
 # What to display as prompt suffix in Bash. Most sensibly represented as '$'.
 function _prompt_suffix {
-  # hour=`date +%k`  # Get current hour in 24-hr format.
-  # if ((0<=$hour && $hour<=6))
-  # then
-  #   message="🌙"  # Crescent moon.
-  # elif ((7<=$hour && $hour<=11))
-  # then
-  #   message="☕"  # Coffee cup.
-  # elif ((12<=$hour && $hour<=13))
-  # then
-  #   message="🍴"  # Knife and fork.
-  # elif ((14<=$hour && $hour<=17))
-  # then
-  #   message="💡"  # Lightbulb.
-  # elif ((18<=$hour && $hour<=23))
-  # then
-  #   message="🍺"  # Beer mug.
-  # else
-  #   message="something wrong"  # Should never happen.
-  # fi
-  echo "$ "
+  hour=`date +%k`  # Get current hour in 24-hr format.
+  if ((0<=$hour && $hour<=6))
+  then
+    message="🌙"  # Crescent moon.
+  elif ((7<=$hour && $hour<=11))
+  then
+    message="☕"  # Coffee cup.
+  elif ((12<=$hour && $hour<=13))
+  then
+    message="🍴"  # Knife and fork.
+  elif ((14<=$hour && $hour<=17))
+  then
+    message="💡"  # Lightbulb.
+  elif ((18<=$hour && $hour<=23))
+  then
+    message="🍺"  # Beer mug.
+  else
+    message="something wrong"  # Should never happen.
+  fi
+  echo "$message  "
+  #echo "$ "
 }
 
 function _shortpath {
   #   How many characters of the $PWD should be kept
   local pwd_length=30
-  local lpwd="${PWD/#$HOME/~}"
+  local canonical=`pwd -P`
+  local lpwd="${canonical/#$HOME/~}"
   if [ $(echo -n $lpwd | wc -c | tr -d " ") -gt $pwd_length ]
     then newPWD="...$(echo -n $lpwd | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
     else newPWD="$(echo -n $lpwd)"
