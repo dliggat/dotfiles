@@ -16,7 +16,11 @@ function clean {
 function rakeall {
   echo "Rake rake rake..."
   time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
-  echo "All raked."
+  if [ $? -ne 0 ]; then
+    echo "FAIL."
+  else
+    echo "All raked!"
+  fi
 }
 
 # Get current timestamp. Use option '-c' to copy to clipboard.
