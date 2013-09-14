@@ -129,10 +129,10 @@ export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
 # Rails aliases.
-alias rc='rails console'
+alias rc='bundle exec rails console'
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
-alias spec='rspec -b -c -f s'
+alias spec='bundle exec rspec -b -c -f s'
 alias be='bundle exec'
 
 # My custom aliases.
@@ -140,6 +140,7 @@ alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
 alias pgen='pwgen -sy 20'
+alias k9='kill -9'
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
