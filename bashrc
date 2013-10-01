@@ -34,6 +34,11 @@ function ts {
   fi
 }
 
+function tmpname {
+  name=`date +"%Y-%m-%d_%H-%M-%S"`
+  echo "tempfile_$name"
+}
+
 # A consistent title for 'paperless' documents.
 # Usage:
 #    $ title Apple ipod Receipt
@@ -141,6 +146,9 @@ alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
 alias pgen='pwgen -sy 20'
 alias k9='kill -9'
+
+# Do a bandwidth test.
+alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --output-document /tmp/`tmpname`'
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
