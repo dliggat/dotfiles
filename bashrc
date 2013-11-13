@@ -15,7 +15,7 @@ function clean {
 # Rails development - drop, create and re-seed development database.
 function rakeall {
   echo "Rake rake rake..."
-  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
+  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare  # resque:clear
   if [ $? -ne 0 ]; then
     echo "FAIL."
   else
@@ -141,17 +141,22 @@ alias spec='bundle exec rspec -b -c -f s'
 alias be='bundle exec'
 
 # My custom aliases.
+alias pushit='git push -u origin `br`'
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
 alias pgen='pwgen -sy 20'
 alias k9='kill -9'
+alias taild='tail -f log/development.log'
 
 # Do a bandwidth test.
-alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --output-document /tmp/`tmpname`'
+alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --report-speed=bits --output-document /tmp/`tmpname`'
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
+
+# Put shell into vim mode (!).
+set -o vi
 
 # Bring in any local, machine specific variables that should not be committed to github.
 if [ -f ~/.localrc ]; then
