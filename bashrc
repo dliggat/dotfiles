@@ -15,7 +15,7 @@ function clean {
 # Rails development - drop, create and re-seed development database.
 function rakeall {
   echo "Rake rake rake..."
-  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare  # resque:clear
+  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
   if [ $? -ne 0 ]; then
     echo "FAIL."
   else
@@ -148,9 +148,14 @@ alias grep='grep --color=auto'
 alias pgen='pwgen -sy 20'
 alias k9='kill -9'
 alias taild='tail -f log/development.log'
+alias ppj='python -mjson.tool'
 
 # Do a bandwidth test.
-alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --report-speed=bits --output-document /tmp/`tmpname`'
+#alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --report-speed=bits --output-document /tmp/`tmpname`'
+function bwhistory {
+  tail -n 8 `ls $HOME/Dropbox/Logging/*-bandwidth.log`
+}
+alias bandwidth="wget --output-document=/dev/null --report-speed=bits http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep ') -'"
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
