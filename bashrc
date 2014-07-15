@@ -34,6 +34,12 @@ function ts {
   fi
 }
 
+function ssd {
+  ss_date=`date +"=date(%Y,%m,%d)"`
+  echo -n $ss_date | pbcopy
+  echo "[$ss_date] copied to clipboard."
+}
+
 function tmpname {
   name=`date +"%Y-%m-%d_%H-%M-%S"`
   echo "tempfile_$name"
