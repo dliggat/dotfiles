@@ -15,7 +15,7 @@ function clean {
 # Rails development - drop, create and re-seed development database.
 function rakeall {
   echo "Rake rake rake..."
-  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare resque:clear
+  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare # resque:clear
   if [ $? -ne 0 ]; then
     echo "FAIL."
   else
@@ -34,6 +34,12 @@ function ts {
   fi
 }
 
+function ssd {
+  ss_date=`date +"=date(%Y,%m,%d)"`
+  echo -n $ss_date | pbcopy
+  echo "[$ss_date] copied to clipboard."
+}
+
 function tmpname {
   name=`date +"%Y-%m-%d_%H-%M-%S"`
   echo "tempfile_$name"
@@ -46,7 +52,7 @@ function tmpname {
 # Then paste directly into Evernote, etc.
 function title {
   title_str=`date '+%Y-%m-%d'`
-  title_str="$title_str =>"
+  title_str="$title_str"
   while [ $1 ]
   do
     lower=`echo $1 | awk '{print tolower($0)}'`  # Lower() the string, purely for consistency.
@@ -125,7 +131,7 @@ RET_VALUE='$(echo $RET)'
 export PROMPT_COMMAND='PS1="$(_prompt_prefix)$START$YELLOW\u@\h:$STOP $START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
-export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
+export NODE_PATH=/usr/local/lib/node_modules:/opt/boxen/nodenv/versions/v0.10/bin:$NODE_PATH
 
 # How to set ls colors: http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
 # This DOES NOT work in linux (at least not Fedora). In Linux, need to change /etc/DIR_COLORS.
@@ -133,11 +139,13 @@ export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
 
+export DOCKER_HOST=tcp://localhost:4243
+
 # Rails aliases.
 alias rc='bundle exec rails console'
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
-alias spec='bundle exec rspec -b -c -f s'
+alias spec='bundle exec rspec -b -c'
 alias be='bundle exec'
 
 # My custom aliases.
@@ -170,3 +178,6 @@ fi
 
 # Source the boxen environment definitions.
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
+# added by travis gem
+[ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
