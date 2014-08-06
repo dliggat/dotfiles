@@ -158,6 +158,15 @@ alias k9='kill -9'
 alias taild='tail -f log/development.log'
 alias embergo='npm install && bower install && ember build --watch'
 
+function migrated {
+  result=`bundle exec rake db:abort_if_pending_migrations`
+  if [ $? -ne 0 ]; then
+    echo $result
+  else
+    echo "Already migrated up!"
+  fi
+}
+
 # Do a bandwidth test.
 #alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --report-speed=bits --output-document /tmp/`tmpname`'
 function bwhistory {
