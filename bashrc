@@ -160,11 +160,13 @@ alias embergo='npm install && bower install && ember build --watch'
 
 function migrated {
   result=`bundle exec rake db:abort_if_pending_migrations`
-  if [ $? -ne 0 ]; then
+  local _ret=$?
+  if [ $_ret -ne 0 ]; then
     echo $result
   else
     echo "Already migrated up!"
   fi
+  return $_ret
 }
 
 # Do a bandwidth test.
