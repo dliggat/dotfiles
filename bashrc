@@ -34,12 +34,6 @@ function ts {
   fi
 }
 
-function ssd {
-  ss_date=`date +"=date(%Y,%m,%d)"`
-  echo -n $ss_date | pbcopy
-  echo "[$ss_date] copied to clipboard."
-}
-
 function tmpname {
   name=`date +"%Y-%m-%d_%H-%M-%S"`
   echo "tempfile_$name"
@@ -59,7 +53,7 @@ function title {
     title_str="$title_str $lower"
     shift
   done
-  title_str="$title_str (Paperless)"
+  title_str="USE ALFRED"
   echo $title_str | pbcopy
   echo "[$title_str] copied to clipboard."
 }
@@ -128,7 +122,7 @@ STOP="\[\e[m\]"
 PROMPT_COMMAND='RET=$?;'
 RET_VALUE='$(echo $RET)'
 # export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
-export PROMPT_COMMAND='PS1="$(_prompt_prefix)$START$YELLOW\u@\h:$STOP $START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
+export PROMPT_COMMAND='PS1="$(_prompt_prefix)$START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
 export NODE_PATH=/usr/local/lib/node_modules:/opt/boxen/nodenv/versions/v0.10/bin:$NODE_PATH
