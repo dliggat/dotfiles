@@ -1,0 +1,30 @@
+
+[alias]
+b = branch
+pos = push -u origin source
+cm = checkout master
+co = commit
+s = status -sb
+pom = push -u origin master
+l1 = log --oneline -n 10
+w = browse
+ch = checkout
+
+[color]
+ui = true
+
+[user]
+name = Dave Liggat
+email = dliggat@gmail.com
+
+[core]
+editor = vim
+excludesfile = /opt/boxen/config/git/gitignore
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[hub]
+protocol = https
+[push]
+	default = simple
