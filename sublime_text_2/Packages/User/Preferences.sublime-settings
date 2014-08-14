@@ -19,7 +19,7 @@
 		"*.zip",
 		"*.scssc"
 	],
-	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Solarized (Dark).tmTheme",
 	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns": ["_deploy", ".svn", ".git", ".sass-cache", ".jhw-cache"],
