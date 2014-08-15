@@ -2,7 +2,11 @@
 	"folders":
 	[
 		{
-			"path": "plyfeme"
+			"path": "~/git/plyfeme"
 		}
-	]
+	],
+        "settings":
+        {
+                "color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme"
+        }
 }
