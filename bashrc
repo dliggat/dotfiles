@@ -2,7 +2,7 @@
 
 # Current git branch or nothing.
 function br {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  local ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "${ref#refs/heads/}"
 }
 
@@ -25,7 +25,7 @@ function rakeall {
 
 # Get current timestamp. Use option '-c' to copy to clipboard.
 function ts {
-  iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
+  local iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
   if [ "$1" == "-c" ]; then
     echo -n $iso_stamp | pbcopy
     echo "[$iso_stamp] copied to clipboard."
@@ -35,7 +35,7 @@ function ts {
 }
 
 function tmpname {
-  name=`date +"%Y-%m-%d_%H-%M-%S"`
+  local name=`date +"%Y-%m-%d_%H-%M-%S"`
   echo "tempfile_$name"
 }
 
@@ -44,41 +44,41 @@ function tmpname {
 #    $ title Apple ipod Receipt
 #    $ [2013-07-08 => apple ipod receipt (Paperless)] copied to clipboard.
 # Then paste directly into Evernote, etc.
-function title {
-  title_str=`date '+%Y-%m-%d'`
-  title_str="$title_str"
-  while [ $1 ]
-  do
-    lower=`echo $1 | awk '{print tolower($0)}'`  # Lower() the string, purely for consistency.
-    title_str="$title_str $lower"
-    shift
-  done
-  title_str="USE ALFRED"
-  echo $title_str | pbcopy
-  echo "[$title_str] copied to clipboard."
-}
+# function title {
+#   title_str=`date '+%Y-%m-%d'`
+#   title_str="$title_str"
+#   while [ $1 ]
+#   do
+#     lower=`echo $1 | awk '{print tolower($0)}'`  # Lower() the string, purely for consistency.
+#     title_str="$title_str $lower"
+#     shift
+#   done
+#   title_str="USE ALFRED"
+#   echo $title_str | pbcopy
+#   echo "[$title_str] copied to clipboard."
+# }
 
 
 # Display a little time-of-day indicator as the first character of the PS1.
 function _prompt_prefix {
-  hour=`date +%k`  # Get current hour in 24-hr format.
+  local hour=`date +%k`  # Get current hour in 24-hr format.
   if ((0<=$hour && $hour<=6))
   then
-    message="🌙"  # Crescent moon.
+    local message="🌙"  # Crescent moon.
   elif ((7<=$hour && $hour<=11))
   then
-    message="☕"  # Coffee cup.
+    local message="☕"  # Coffee cup.
   elif ((12<=$hour && $hour<=13))
   then
-    message="🍴"  # Knife and fork.
+    local message="🍴"  # Knife and fork.
   elif ((14<=$hour && $hour<=17))
   then
-    message="💡"  # Lightbulb.
+    local message="💡"  # Lightbulb.
   elif ((18<=$hour && $hour<=23))
   then
-    message="🍺"  # Beer mug.
+    local message="🍺"  # Beer mug.
   else
-    message="something wrong"  # Should never happen.
+    local message="something wrong"  # Should never happen.
   fi
   echo "$message  "
 }
@@ -102,7 +102,7 @@ function _shortpath {
 
 # Display current branch in PS1.
 function _git_branch_ps1 {
-  branch_name=`br`
+  local branch_name=`br`
   if [ -n "$branch_name" ]; then
     echo "($branch_name)"
   else
@@ -153,7 +153,7 @@ alias taild='tail -f log/development.log'
 alias embergo='npm install && bower install && ember build --watch'
 
 function migrated {
-  result=`bundle exec rake db:abort_if_pending_migrations`
+  local result=`bundle exec rake db:abort_if_pending_migrations`
   local _ret=$?
   if [ $_ret -ne 0 ]; then
     echo $result
