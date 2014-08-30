@@ -19,10 +19,10 @@ email = dliggat@gmail.com
 
 [core]
 editor = vim
-excludesfile = /opt/boxen/config/git/gitignore
+excludesfile = .gitignore
 
 [credential]
-helper = /opt/boxen/bin/boxen-git-credential
+helper = /usr/local/bin/git-credential-osxkeychain
 
 [hub]
 protocol = https
