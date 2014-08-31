@@ -1,0 +1,15 @@
+{
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"GitGutter",
+		"Haml",
+		"Handlebars",
+		"jQuery",
+		"LESS",
+		"Package Control",
+		"Sass",
+		"SCSS",
+		"SublimeLinter"
+	]
+}
