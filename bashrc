@@ -125,7 +125,7 @@ RET_VALUE='$(echo $RET)'
 export PROMPT_COMMAND='PS1="$(_prompt_prefix)$START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
 
 # Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
-export NODE_PATH=/usr/local/lib/node_modules:/opt/boxen/nodenv/versions/v0.10/bin:$NODE_PATH
+# export NODE_PATH=/usr/local/lib/node_modules:/opt/boxen/nodenv/versions/v0.10/bin:$NODE_PATH
 
 # How to set ls colors: http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
 # This DOES NOT work in linux (at least not Fedora). In Linux, need to change /etc/DIR_COLORS.
@@ -176,13 +176,5 @@ export HISTCONTROL=ignorespace
 # Put shell into vim mode (!).
 set -o vi
 
-# Bring in any local, machine specific variables that should not be committed to github.
-if [ -f ~/.localrc ]; then
-  source ~/.localrc
-fi
-
-# Source the boxen environment definitions.
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 # added by travis gem
-[ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
+# [ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
