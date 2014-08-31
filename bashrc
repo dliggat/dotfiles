@@ -6,59 +6,6 @@ function br {
   echo "${ref#refs/heads/}"
 }
 
-# Strip out goddamn rich text formatting from text.
-function clean {
-  echo 'Formatting be gone with you!'
-  pbpaste | pbcopy
-}
-
-# Rails development - drop, create and re-seed development database.
-function rakeall {
-  echo "Rake rake rake..."
-  time bundle exec rake db:drop db:create db:migrate db:seed db:test:prepare # resque:clear
-  if [ $? -ne 0 ]; then
-    echo "FAIL."
-  else
-    echo "All raked!"
-  fi
-}
-
-# Get current timestamp. Use option '-c' to copy to clipboard.
-function ts {
-  local iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
-  if [ "$1" == "-c" ]; then
-    echo -n $iso_stamp | pbcopy
-    echo "[$iso_stamp] copied to clipboard."
-  else
-    echo $iso_stamp
-  fi
-}
-
-function tmpname {
-  local name=`date +"%Y-%m-%d_%H-%M-%S"`
-  echo "tempfile_$name"
-}
-
-# A consistent title for 'paperless' documents.
-# Usage:
-#    $ title Apple ipod Receipt
-#    $ [2013-07-08 => apple ipod receipt (Paperless)] copied to clipboard.
-# Then paste directly into Evernote, etc.
-# function title {
-#   title_str=`date '+%Y-%m-%d'`
-#   title_str="$title_str"
-#   while [ $1 ]
-#   do
-#     lower=`echo $1 | awk '{print tolower($0)}'`  # Lower() the string, purely for consistency.
-#     title_str="$title_str $lower"
-#     shift
-#   done
-#   title_str="USE ALFRED"
-#   echo $title_str | pbcopy
-#   echo "[$title_str] copied to clipboard."
-# }
-
-
 # Display a little time-of-day indicator as the first character of the PS1.
 function _prompt_prefix {
   local hour=`date +%k`  # Get current hour in 24-hr format.
@@ -124,51 +71,11 @@ RET_VALUE='$(echo $RET)'
 # export PROMPT_COMMAND='PS1="\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`[\!] $START$YELLOW\u@\h:$STOP $START$WHITE\$(shortpath)$STOP$START$RED\$(parse_git_branch)$STOP $(prompt_suffix)"'
 export PROMPT_COMMAND='PS1="$(_prompt_prefix)$START$WHITE\$(_shortpath)$STOP$START$RED\$(_git_branch_ps1)$STOP $START$YELLOW$(_prompt_suffix)$STOP"'
 
-# Putting /usr/local/bin in front of other paths in $PATH as suggested by `brew doctor`.
-# export NODE_PATH=/usr/local/lib/node_modules:/opt/boxen/nodenv/versions/v0.10/bin:$NODE_PATH
-
 # How to set ls colors: http://www.napolitopia.com/2010/03/lscolors-in-osx-snow-leopard-for-dummies/
 # This DOES NOT work in linux (at least not Fedora). In Linux, need to change /etc/DIR_COLORS.
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS='GxHxxxxxBxxxxxxxxxgxgx'
-
-export DOCKER_HOST=tcp://localhost:4243
-
-# Rails aliases.
-alias rc='bundle exec rails console'
-alias beg='bundle exec guard'
-alias drb='bundle exec spork'
-alias spec='bundle exec rspec -b -c'
-alias be='bundle exec'
-
-# My custom aliases.
-alias pushit='git push -u origin `br`'
-alias fd='find . -type d | sort'
-alias ff='find . -type f | sort'
-alias grep='grep --color=auto'
-alias pgen='pwgen -sy 20'
-alias k9='kill -9'
-alias taild='tail -f log/development.log'
-alias embergo='npm install && bower install && ember build --watch'
-
-function migrated {
-  local result=`bundle exec rake db:abort_if_pending_migrations`
-  local _ret=$?
-  if [ $_ret -ne 0 ]; then
-    echo $result
-  else
-    echo "Already migrated up!"
-  fi
-  return $_ret
-}
-
-# Do a bandwidth test.
-#alias bandwidth='wget http://cachefly.cachefly.net/400mb.test --report-speed=bits --output-document /tmp/`tmpname`'
-function bwhistory {
-  tail -n 8 `ls $HOME/Dropbox/Logging/*-bandwidth.log`
-}
-alias bandwidth="wget --output-document=/dev/null --report-speed=bits http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep ') -'"
 
 # Enable the ability to prevent addition to .bash_history with prepended space.
 export HISTCONTROL=ignorespace
@@ -178,3 +85,5 @@ set -o vi
 
 # added by travis gem
 # [ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
+
+source ./.shell_common

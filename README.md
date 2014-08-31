@@ -5,11 +5,13 @@ A place to store my dotfiles. Mostly symlink based.
 
 ## Home Directory symlinks
 ```bash
-lrwxr-xr-x    1 dliggat  staff     47 10 Nov  2013 .bash_profile -> /Users/dliggat/code/boxen/dotfiles/bash_profile
-lrwxr-xr-x    1 dliggat  staff     41 10 Nov  2013 .bashrc -> /Users/dliggat/code/boxen/dotfiles/bashrc
-lrwxr-xr-x    1 dliggat  staff     37 13 Aug 14:16 .gitconfig -> /Users/dliggat/git/dotfiles/gitconfig
-lrwxr-xr-x    1 dliggat  staff     37 13 Aug 14:16 .gitignore -> /Users/dliggat/git/dotfiles/gitignore
-lrwxr-xr-x    1 dliggat  staff     40 10 Nov  2013 .vimrc -> /Users/dliggat/code/boxen/dotfiles/vimrc
+lrwxr-xr-x    1 dliggat  staff      43 29 Aug 20:42 .bash_profile -> /Users/dliggat/git/me/dotfiles/bash_profile
+lrwxr-xr-x    1 dliggat  staff      37 29 Aug 20:42 .bashrc -> /Users/dliggat/git/me/dotfiles/bashrc
+lrwxr-xr-x    1 dliggat  staff      40 29 Aug 20:42 .gitconfig -> /Users/dliggat/git/me/dotfiles/gitconfig
+lrwxr-xr-x    1 dliggat  staff      40 29 Aug 20:42 .gitignore -> /Users/dliggat/git/me/dotfiles/gitignore
+lrwxr-xr-x    1 dliggat  staff      43 30 Aug 21:57 .shell_common -> /Users/dliggat/git/me/dotfiles/shell_common
+lrwxr-xr-x    1 dliggat  staff      36 29 Aug 20:42 .vimrc -> /Users/dliggat/git/me/dotfiles/vimrc
+lrwxr-xr-x    1 dliggat  staff      36 30 Aug 21:34 .zshrc -> /Users/dliggat/git/me/dotfiles/zshrc
 ```
 
 ## Sublime symlinks
