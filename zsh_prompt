@@ -5,7 +5,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-#Customized git status, oh-my-zsh currently does not allow render dirty status before branch
+# Customized git status, oh-my-zsh currently does not allow render dirty status before branch.
 git_custom_status() {
   local cb=$(current_branch)
   if [ -n "$cb" ]; then
@@ -13,6 +13,7 @@ git_custom_status() {
   fi
 }
 
+# Display an abbreviated version of the `pwd`.
 display_path() {
   local pwd_length=30
   local canonical=`pwd -P`
@@ -24,17 +25,17 @@ display_path() {
   echo $newPWD
 }
 
-#RVM and git settings
+# RVM and git settings.
 if [[ -s ~/.rvm/scripts/rvm ]] ; then
-  RPS1='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%} $EPS1'
+  RPROMPT='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%} $EPS1'
 else
   if which rbenv &> /dev/null; then
-    RPS1='$(git_custom_status)%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%} $EPS1'
+    RPROMPT='$(git_custom_status)%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%} $EPS1'
   else
     if [[ -n `which chruby_prompt_info` && -n `chruby_prompt_info` ]]; then
-      RPS1='$(git_custom_status)%{$fg[red]%}[`chruby_prompt_info`]%{$reset_color%} $EPS1'
+      RPROMPT='$(git_custom_status)%{$fg[red]%}[`chruby_prompt_info`]%{$reset_color%} $EPS1'
     else
-      RPS1='$(git_custom_status) $EPS1'
+      RPROMPT='$(git_custom_status) $EPS1'
     fi
   fi
 fi
