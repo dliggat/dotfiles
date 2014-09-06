@@ -86,4 +86,3 @@ set -o vi
 # added by travis gem
 # [ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
 
-source ./.shell_common

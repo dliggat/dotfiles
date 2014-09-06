@@ -22,6 +22,10 @@ source $(brew --prefix nvm)/nvm.sh
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh --no-rehash)"
 
-setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
-source $DOTFILES/zsh_prompt
-source $DOTFILES/shell_common
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
+for zsh_config in `ls $DOTFILES/zsh/*.zsh`
+do
+  source $zsh_config
+done
