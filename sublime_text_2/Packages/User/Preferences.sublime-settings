@@ -24,11 +24,16 @@
 	"ensure_newline_at_eof_on_save": true,
 	"folder_exclude_patterns":
 	[
-		"_deploy",
-		".svn",
 		".git",
+		".jhw-cache",
 		".sass-cache",
-		".jhw-cache"
+		".svn",
+		"_deploy",
+		"bower_components",
+		"dist",
+		"node_modules",
+		"tmp",
+		"vendor"
 	],
 	"font_face": "Monaco",
 	"font_size": 14.0,
