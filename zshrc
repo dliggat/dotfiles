@@ -1,12 +1,9 @@
 #!/bin/zsh
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export DOTFILES=$HOME/git/me/dotfiles
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="gallois"
+# ZSH_THEME="gallois"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -21,16 +18,16 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew ruby bundler)
-
 source $ZSH/oh-my-zsh.sh
 
+# Path configuration.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$PATH:/usr/local/lib/node_modules"
 source $(brew --prefix nvm)/nvm.sh
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh --no-rehash)"
 
-
 # User Configuration Below This Line:
 setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
-source ./.shell_common
+source $DOTFILES/zsh_prompt
+source $DOTFILES/shell_common

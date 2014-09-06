@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Rails development - drop, create and re-seed development database.
 function rakeall {
   echo "Rake rake rake..."
