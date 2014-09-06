@@ -19,7 +19,7 @@ email = dliggat@gmail.com
 
 [core]
 editor = vim
-excludesfile = .gitignore
+excludesfile = ~/.gitignore
 
 [credential]
 helper = /usr/local/bin/git-credential-osxkeychain
