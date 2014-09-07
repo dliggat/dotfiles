@@ -25,7 +25,7 @@ eval "$(rbenv init - zsh --no-rehash)"
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
-for zsh_config in `ls $DOTFILES/zsh/*.zsh`
+for zsh_config in `ls $DOTFILES/zsh/*.zsh | sort`
 do
   source $zsh_config
 done
