@@ -1,15 +1,15 @@
 #!/bin/zsh
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
+PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
+PROMPT_SUFFIX="]%{$reset_color%}"
+PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
+PROMPT_CLEAN=""
 
 # Customized git status, oh-my-zsh currently does not allow render dirty status before branch.
 git_custom_status() {
   local cb=$(current_branch)
   if [ -n "$cb" ]; then
-    echo "$(parse_git_dirty)%{$fg_bold[yellow]%}$(work_in_progress)%{$reset_color%}$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    echo "$(parse_git_dirty)%{$fg_bold[yellow]%}$(work_in_progress)%{$reset_color%}$PROMPT_PREFIX$(current_branch)$PROMPT_SUFFIX"
   fi
 }
 
@@ -25,7 +25,7 @@ display_path() {
   echo $newPWD
 }
 
-# RVM and git settings.
+# RVM and git settings for the right prompt.
 if [[ -s ~/.rvm/scripts/rvm ]] ; then
   RPROMPT='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%}'
 else
@@ -40,5 +40,6 @@ else
   fi
 fi
 
+# Set the left prompt.
 PROMPT='%{$fg[cyan]%}[$(display_path)]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 
