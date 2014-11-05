@@ -7,8 +7,10 @@
 		"Haml",
 		"Handlebars",
 		"jQuery",
+		"LaTeX Word Count",
 		"LESS",
 		"Package Control",
+		"Ruby Slim",
 		"Sass",
 		"SCSS",
 		"SublimeLinter"

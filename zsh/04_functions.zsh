@@ -13,7 +13,7 @@ function rakeall {
 
 # Get current timestamp. Use option '-c' to copy to clipboard.
 function ts {
-  local iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
+  iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
   if [ "$1" == "-c" ]; then
     echo -n $iso_stamp | pbcopy
     echo "[$iso_stamp] copied to clipboard."
