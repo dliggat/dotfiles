@@ -7,6 +7,7 @@ alias pgen='pwgen -sy 20'
 alias k9='kill -9'
 alias embergo='npm install && bower install && ember build --watch'
 alias bandwidth="wget --output-document=/dev/null --report-speed=bits http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep ') -'"
+alias dotfiles="subl ~/git/me/dotfiles"
 
 # Rails aliases.
 alias beg='bundle exec guard'
