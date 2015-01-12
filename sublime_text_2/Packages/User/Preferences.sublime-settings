@@ -29,7 +29,6 @@
 		".sass-cache",
 		".svn",
 		"_deploy",
-		"bower_components",
 		"dist",
 		"node_modules",
 		"tmp",

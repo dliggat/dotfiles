@@ -11,6 +11,18 @@ function rakeall {
   fi
 }
 
+function pg {
+  local project=$(basename `pwd`)
+  local psql_str="psql -U $project $project"
+  psql_str+="_development"
+  echo $psql_str
+  echo
+  echo '\dt:  data tables'
+  echo '\q :  quit'
+  echo
+  eval ${psql_str}
+}
+
 # Get current timestamp. Use option '-c' to copy to clipboard.
 function ts {
   iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
