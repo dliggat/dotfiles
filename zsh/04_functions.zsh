@@ -11,6 +11,12 @@ function rakeall {
   fi
 }
 
+function deploy {
+  [[ `current_branch` = 'production' ]] || { echo 'Checkout production you idiot' ; return 1; }
+  bundle exec rspec || { echo 'Tests should pass you idiot' ; return 1; }
+  bundle exec cap deploy || { echo 'Deployment failed. Sigh.' ; return 1; }
+}
+
 function pg {
   local project=$(basename `pwd`)
   local psql_str="psql -U $project $project"
