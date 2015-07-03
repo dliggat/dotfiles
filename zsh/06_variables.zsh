@@ -1,4 +1,4 @@
 #!/bin/zsh
 
 export EDITOR="subl"
-export PT="--profile trinimbus"
+export PT='--profile=trinimbus'
