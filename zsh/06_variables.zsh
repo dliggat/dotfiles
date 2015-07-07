@@ -1,4 +1,4 @@
 #!/bin/zsh
 
 export EDITOR="subl"
-export PT='--profile=trinimbus'
+export AWS_DEFAULT_PROFILE="trinimbus"
