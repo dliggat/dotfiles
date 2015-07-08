@@ -25,12 +25,20 @@ display_path() {
   echo $newPWD
 }
 
+aws() {
+  if [[ -z "$AWS_DEFAULT_PROFILE" ]]; then
+    echo 'none'
+  else
+    echo "$AWS_DEFAULT_PROFILE"
+  fi
+}
+
 # RVM and git settings for the right prompt.
 if [[ -s ~/.rvm/scripts/rvm ]] ; then
   RPROMPT='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%}'
 else
   if which rbenv &> /dev/null; then
-    RPROMPT='$(git_custom_status)%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%}'
+    RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws)]%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%}'
   else
     if [[ -n `which chruby_prompt_info` && -n `chruby_prompt_info` ]]; then
       RPROMPT='$(git_custom_status)%{$fg[red]%}[`chruby_prompt_info`]%{$reset_color%}'
