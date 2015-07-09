@@ -15,7 +15,7 @@ git_custom_status() {
 
 # Display an abbreviated version of the `pwd`.
 display_path() {
-  local pwd_length=30
+  local pwd_length=22
   local canonical=`pwd -P`
   local lpwd="${canonical/#$HOME/~}"
   if [ $(echo -n $lpwd | wc -c | tr -d " ") -gt $pwd_length ]
@@ -25,7 +25,7 @@ display_path() {
   echo $newPWD
 }
 
-aws() {
+aws_profile() {
   if [[ -z "$AWS_DEFAULT_PROFILE" ]]; then
     echo 'none'
   else
@@ -38,7 +38,7 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then
   RPROMPT='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%}'
 else
   if which rbenv &> /dev/null; then
-    RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws)]%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%}'
+    RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg[red]%}[`rbenv version | sed -e "s/ (set.*$//"`]%{$reset_color%}'
   else
     if [[ -n `which chruby_prompt_info` && -n `chruby_prompt_info` ]]; then
       RPROMPT='$(git_custom_status)%{$fg[red]%}[`chruby_prompt_info`]%{$reset_color%}'
