@@ -11,5 +11,5 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew ruby bundler)
+plugins=(aws git brew ruby bundler)
 source $ZSH/oh-my-zsh.sh

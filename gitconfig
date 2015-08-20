@@ -29,3 +29,7 @@ helper = /usr/local/bin/git-credential-osxkeychain
 protocol = https
 [push]
 default = simple
+[diff]
+	tool = opendiff
+[difftool]
+	prompt = false

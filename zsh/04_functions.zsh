@@ -61,7 +61,7 @@ function bwhistory {
   tail -n 8 `ls $HOME/Dropbox/Logging/*-bandwidth.log`
 }
 
-function sss {
-  set -x
-  s3cmd -c "$HOME/.aws/s3cfg/$AWS_DEFAULT_PROFILE" "$@"
-}
+# function sss {
+#   set -x
+#   s3cmd -c "$HOME/.aws/s3cfg/$AWS_DEFAULT_PROFILE" "$@"
+# }

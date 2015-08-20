@@ -17,6 +17,7 @@
 		"*.swf",
 		"*.jar",
 		"*.zip",
+		"*.tgz",
 		"*.scssc"
 	],
 	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
