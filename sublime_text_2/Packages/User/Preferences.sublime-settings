@@ -41,6 +41,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
+		"Package Control"
 	],
 	"overlay_scroll_bars": "enabled",
 	"preview_on_click": false,
