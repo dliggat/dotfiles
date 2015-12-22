@@ -26,10 +26,10 @@ display_path() {
 }
 
 aws_profile() {
-  if [[ -z "$AWS_DEFAULT_PROFILE" ]]; then
+  if [[ -z "$AWS" ]]; then
     echo 'none'
   else
-    echo "$AWS_DEFAULT_PROFILE"
+    echo "$AWS"
   fi
 }
 
