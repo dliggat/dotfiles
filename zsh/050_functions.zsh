@@ -11,6 +11,12 @@ function rakeall {
   fi
 }
 
+function gitgo {
+  git add .
+  git commit -m "Committing a snapshot: `date`"
+  git push origin master
+}
+
 function deploy {
   [[ `current_branch` = 'production' ]] || { echo 'Checkout production you idiot' ; return 1; }
   bundle exec rspec || { echo 'Tests should pass you idiot' ; return 1; }
