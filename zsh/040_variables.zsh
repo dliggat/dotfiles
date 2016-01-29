@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-export EDITOR="subl"
+export EDITOR="st"
