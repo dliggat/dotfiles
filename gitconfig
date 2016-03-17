@@ -9,6 +9,7 @@ pom = push -u origin master
 l1 = log --oneline -n 10
 w = browse
 ch = checkout
+tt = tag -n9
 today = !git log --since=midnight --author=\"$(git config user.name)\" --oneline
 
 [color]
