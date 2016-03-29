@@ -18,6 +18,7 @@ ui = true
 [user]
 name = Dave Liggat
 	email = dave@liggat.org
+	useconfigonly = true
 
 [core]
 editor = vim
