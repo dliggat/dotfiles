@@ -11,6 +11,7 @@ alias bandwidth="wget --output-document=/dev/null --report-speed=bits http://spe
 alias dotfiles="st ~/git/me/dotfiles"
 alias purgebranch='git branch --merged | grep -v "\*" | grep -v "master" | xargs -n 1 git branch -d'
 alias jqq="jq '.'"
+alias nrg="npm run grunt --"
 
 # Rails aliases.
 alias beg='bundle exec guard'

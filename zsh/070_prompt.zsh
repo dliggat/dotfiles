@@ -16,7 +16,7 @@ git_custom_status() {
 # Display an abbreviated version of the `pwd`.
 display_path() {
   local pwd_length=22
-  local canonical=`pwd -P`
+  local canonical="`pwd -P`"
   local lpwd="${canonical/#$HOME/~}"
   if [ $(echo -n $lpwd | wc -c | tr -d " ") -gt $pwd_length ]
     then newPWD="...$(echo -n $lpwd | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
