@@ -13,10 +13,13 @@ alias purgebranch='git branch --merged | grep -v "\*" | grep -v "master" | xargs
 alias jqq="jq '.'"
 alias nrg="npm run grunt --"
 
+alias sha1sum='shasum'
+
 # Rails aliases.
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
 alias spec='bundle exec rspec -b -c'
+alias s='bundle exec rspec -b -c spec'
 alias be='bundle exec'
 alias redisstart='sudo launchctl start io.redis.redis-server'
 alias redisstop='sudo launchctl stop io.redis.redis-server'
