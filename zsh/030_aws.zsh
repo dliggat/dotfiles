@@ -20,4 +20,4 @@ function aws-set {
   fi
 }
 
-aws-set 'trinimbus' 'false'
+aws-set 'tri-sandbox' 'false'
