@@ -35,3 +35,5 @@ default = simple
 	tool = opendiff
 [difftool]
 	prompt = false
+[rebase]
+	autosquash = true
