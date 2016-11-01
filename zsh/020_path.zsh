@@ -7,3 +7,4 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh --no-rehash)"
 
 export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv virtualenv-init -)"
