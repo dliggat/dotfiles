@@ -20,3 +20,7 @@ $ pwd
 
 $ ln -s /Users/dliggat/git/me/dotfiles/Preferences.sublime-settings Preferences.sublime-settings
 ```
+
+## Brew
+
+Install prereqs, as listed in `Brewfile`, then `brew bundle` will install the latest versions of everything.

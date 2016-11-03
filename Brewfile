@@ -16,14 +16,23 @@ brew 'tree'
 brew 'vim'
 brew 'zsh'
 
+# Development
+brew 'mysql'
+
 # Ruby
-# brew 'ruby-build'
+brew 'rbenv'              # Failed initially... had to run `sudo xcode-select --switch /Applications/Xcode.app`
+brew 'ruby-build'
 brew 'libyaml'
 
+# Python
+brew 'pyenv'
+brew 'pyenv-virtualenv'
+
 # Mac App Store.
-brew 'mas'  # Requires iniital Xcode installation from App Store.
+brew 'mas'  # Requires initial Xcode installation from App Store.
 
 mas '1Password', id: 443987910
+mas 'Amphetamine', id: 937984704
 mas 'Clear', id: 504544917
 mas 'DaisyDisk', id: 411643860
 mas 'Fantastical 2', id: 975937182
@@ -39,3 +48,10 @@ mas 'Skitch', id: 425955336
 mas 'Soulver', id: 413965349
 mas 'TextWrangler', id: 404010395
 mas 'Tweetbot', id: 557168941
+
+# Brew casks.
+cask 'alfred'
+cask 'chromium'
+cask 'iterm2'
+cask 'sublime-text'
+cask 'taskpaper'

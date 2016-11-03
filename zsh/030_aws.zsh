@@ -20,4 +20,4 @@ function aws-set {
   fi
 }
 
-aws-set 'tri-sandbox' 'false'
+aws-set 'dliggat' 'false'

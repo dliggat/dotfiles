@@ -9,12 +9,7 @@ do
   source $zsh_config
 done
 
-# export PYENV_VERSION="2.7.9"  # Instead of this, use ~/.pyenv/version file
-export PYENV_ROOT="$HOME/.pyenv"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # added by travis gem
-[ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
+# [ -f /Users/dliggat/.travis/travis.sh ] && source /Users/dliggat/.travis/travis.sh
 
