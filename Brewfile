@@ -7,6 +7,7 @@
 
 # Basic stuff.
 brew 'git'
+brew 'gh'
 brew 'httpie'
 brew 'jq'
 brew 'openssl'
