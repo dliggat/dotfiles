@@ -11,6 +11,7 @@ brew 'gh'
 brew 'httpie'
 brew 'jq'
 brew 'openssl'
+brew 'pwgen'
 brew 'sl'
 brew 'tmux'
 brew 'tree'
@@ -19,6 +20,9 @@ brew 'zsh'
 
 # Development
 brew 'mysql'
+
+# Node
+brew 'nvm'
 
 # Ruby
 brew 'rbenv'              # Failed initially... had to run `sudo xcode-select --switch /Applications/Xcode.app`
