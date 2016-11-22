@@ -35,6 +35,7 @@ brew 'pyenv-virtualenv'
 
 # Mac App Store.
 brew 'mas'  # Requires initial Xcode installation from App Store.
+            # Find the id codes with `mas search Foo`.
 
 mas '1Password', id: 443987910
 mas 'Amphetamine', id: 937984704
@@ -61,3 +62,4 @@ cask 'iterm2'
 cask 'sublime-text'
 cask 'slack'
 cask 'taskpaper'
+cask 'whatsapp'
