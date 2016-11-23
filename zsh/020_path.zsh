@@ -2,10 +2,11 @@
 
 # source $(brew --prefix nvm)/nvm.sh
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="${HOME}/.rbenv/bin:${PATH}"
 eval "$(rbenv init - zsh --no-rehash)"
+export PATH="/usr/local/opt/openssl/bin:${PATH}"
 
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="${HOME}/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
