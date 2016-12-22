@@ -33,21 +33,14 @@ aws_profile() {
   fi
 }
 
-# RVM and git settings for the right prompt.
-if [[ -s ~/.rvm/scripts/rvm ]] ; then
-  RPROMPT='$(git_custom_status)%{$fg[red]%}[`~/.rvm/bin/rvm-prompt`]%{$reset_color%}'
-else
-  if which rbenv &> /dev/null; then
-    RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg[red]%}[`rbenv version 2> /dev/null | sed -e "s/ (set.*$//"`]%{$reset_color%}'
-  else
-    if [[ -n `which chruby_prompt_info` && -n `chruby_prompt_info` ]]; then
-      RPROMPT='$(git_custom_status)%{$fg[red]%}[`chruby_prompt_info`]%{$reset_color%}'
-    else
-      RPROMPT='$(git_custom_status)'
-    fi
-  fi
-fi
+python_virtualenv() {
+  echo $(pyenv version | cut -f 1 -d' ')
+}
 
-# Set the left prompt.
+ruby_rbenv() {
+  echo $(rbenv version 2> /dev/null | sed -e "s/ (set.*$//")
+}
+
+RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg_bold[blue]%}[$(python_virtualenv)]%{$reset_color%}%{$fg[red]%}[$(ruby_rbenv)]%{$reset_color%}'
 PROMPT='%{$fg[cyan]%}[$(display_path)]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 
