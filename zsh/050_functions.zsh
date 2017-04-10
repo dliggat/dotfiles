@@ -77,6 +77,19 @@ function bwhistory {
   tail -n 8 `ls $HOME/Dropbox/Logging/*-bandwidth.log`
 }
 
+SYNC_DIR=/Users/dliggat/appsync
+function do_sync {
+  set -x
+  osascript -e 'quit app "1Password"'
+  osascript -e 'quit app "Quiver"'
+  cd $SYNC_DIR
+  git add .
+  git commit -m "Committing from $(hostname) on $(date +%F)"
+  git pull origin master -X theirs
+  git push origin master
+}
+
+
 # function sss {
 #   set -x
 #   s3cmd -c "$HOME/.aws/s3cfg/$AWS_DEFAULT_PROFILE" "$@"
