@@ -1,0 +1,194 @@
+// See http://guide.taskpaper.com/creating_themes.html to get started.
+
+// Theme by Matt Gemmell | http://mattgemmell.com/ | http://twitter.com/mattgemmell
+// Inspired on OmniFocus | https://www.omnigroup.com/omnifocus/
+
+@user-font-size: 18;
+@text-color: black;
+@tint-color: #8C19FF;
+@invisibles-color: @selection-color;
+
+item[data-type=project] {
+	font-size: 18;
+	color: #000000;
+	font-weight: bold;
+}
+
+item[depth=1][data-type=project] {
+  paragraph-spacing-before: 10;
+  paragraph-spacing-after: 0;
+}
+
+item {
+  line-height-multiple: 1.4;
+}
+
+item[data-type="note"] {
+  > run[content] {
+    font-style: italic;
+    color: #666;
+    font-size: 18;
+    background-color: #FFFAB9;
+  }
+  > run[link] {
+    color: blue;
+    font-style: normal;
+  }
+}
+
+run[link] {
+  color: blue;
+  text-decoration: underline;
+}
+
+run[link^="button"] {
+  color: @text-color;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+run[link^="filter"] {
+  color: @text-color;
+  text-decoration: none;
+}
+
+run[tag], item[data-type="note"] > run[tag] {
+  font-style: normal;
+  text-decoration: none;
+  font-weight: normal;
+  color: @tint-color;
+}
+
+item[data-writing], run[tag=data-writing] {
+	color: @tint-color;
+}
+
+item[data-today], run[tag=data-today], item[data-urgent], run[tag=data-urgent] {
+  color: rgb(255, 0, 0);
+}
+
+run[tag=data-today], run[tag=data-urgent] {
+	font-weight: bold;
+}
+
+run[tag=data-flag] {
+  color: rgb(255, 127, 0);
+  font-weight: bold;
+}
+
+item[data-flag] > run[content] {
+  color: rgb(255, 100, 0);
+}
+
+run[tag=data-blocked] {
+  color: red;
+  font-weight: bold;
+}
+
+item[data-blocked] > run[content] {
+  color: red;
+}
+
+run[tag=data-context], run[tag=data-priority], run[tag=data-due], run[tag=data-project] {
+  color: rgb(0, 127, 255);
+}
+
+run[tag=data-takes] {
+	color: #ce00bc;
+}
+
+item[data-priority] {
+  // Just the tag values (between the parentheses).
+  > run[tagvalue=high], > run[tagvalue="1"] {
+    color: #f00;
+    font-weight: bold;
+  }
+  > run[tagvalue=low], > run[tagvalue="5"] {
+    color: #888;
+  }
+}
+
+item[data-priority=high], item[data-priority="1"] {
+  // The entire item with the relevant tag.
+  color: #f00;
+}
+
+item[data-priority=low] > run[content], item[data-priority="5"] > run[content] {
+  color: #888;
+}
+
+item[data-search] {
+  font-style: italic;
+  color: #555;
+}
+
+run[tag=data-search] {
+  color: rgb(0, 160, 0);
+  font-family: Menlo;
+  font-size: 16;
+}
+
+item[data-done], run[tag=data-done] {
+  color: mix(@text-color, @background-color, 50%);
+  > run[content] {
+    text-strikethrough: NSUnderlineStyleSingle;
+  	text-strikethrough-color: mix(@text-color, @background-color, 50%);
+  }
+}
+
+item[data-next], run[tag=data-next] {
+	color: #00a6c5;
+}
+
+item[data-print], run[tag=data-print], item[data-pdf], run[tag=data-pdf] {
+	color: #2DA85A;
+}
+run[tag=data-print], run[tag=data-pdf] {
+	font-weight: bold;
+}
+
+item[data-waiting], run[tag=data-waiting] {
+  color: mix(@text-color, @background-color, 50%);
+  > run[content] {
+  	font-style: italic;
+  }
+}
+
+sidebar {
+	search-item-prefix: "🔍 ";
+}
+
+item[data-Act], run[tag=data-Act], item[data-act], item[data-Act] {
+	color: #3476A2;
+	font-weight: bold;
+}
+
+item[data-Reaction], run[tag=data-Reaction], item[data-Action], run[tag=data-Action], item[data-Climax], run[tag=data-Climax], item[data-Resolution], run[tag=data-Resolution] {
+	color: #81269E;
+}
+
+item[data-StrongReaction], run[tag=data-StrongReaction], item[data-StrongAction], run[tag=data-StrongAction] {
+	color: #6FB135;
+}
+
+item[data-Hook], run[tag=data-Hook], item[data-IncitingEvent], run[tag=data-IncitingEvent], item[data-KeyEvent], run[tag=data-KeyEvent], item[data-ClimacticMoment], run[tag=data-ClimacticMoment] {
+	color: #6FB135;
+}
+
+item[data-1stPlotPoint], run[tag=data-1stPlotPoint], item[data-TurningPoint], run[tag=data-TurningPoint], item[data-3rdPlotPoint], run[tag=data-3rdPlotPoint] {
+	color: #E18229;
+}
+
+item[data-1stPinchPoint], run[tag=data-1stPinchPoint], item[data-2ndPinchPoint], run[tag=data-2ndPinchPoint]
+{
+	color: #CF261F;
+}
+
+run[tag=data-Act], run[tag=data-act],
+run[tag=data-Reaction], run[tag=data-Action], run[tag=data-Climax], run[tag=data-Resolution], run[tag=data-StrongReaction], run[tag=data-StrongAction],
+run[tag=data-Hook], run[tag=data-IncitingEvent], run[tag=data-KeyEvent], run[tag=data-ClimacticMoment],
+run[tag=data-1stPlotPoint], run[tag=data-TurningPoint], run[tag=data-3rdPlotPoint],
+run[tag=data-1stPinchPoint], run[tag=data-2ndPinchPoint]
+{
+	font-weight: bold;
+}
