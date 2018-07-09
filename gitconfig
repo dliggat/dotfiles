@@ -17,7 +17,7 @@ ui = true
 
 [user]
 name = Dave Liggat
-	email = dave@liggat.org
+	email = dliggat@amazon.com
 	useconfigonly = true
 
 [core]
