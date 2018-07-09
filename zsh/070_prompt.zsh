@@ -37,10 +37,7 @@ python_virtualenv() {
   echo $(pyenv version | cut -f 1 -d' ')
 }
 
-ruby_rbenv() {
-  echo $(rbenv version 2> /dev/null | sed -e "s/ (set.*$//")
-}
 
-RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg_bold[blue]%}[$(python_virtualenv)]%{$reset_color%}%{$fg[red]%}[$(ruby_rbenv)]%{$reset_color%}'
+RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg_bold[blue]%}[$(python_virtualenv)]%{$reset_color%}'
 PROMPT='%{$fg[cyan]%}[$(display_path)]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 

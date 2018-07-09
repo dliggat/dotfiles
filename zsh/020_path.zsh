@@ -2,7 +2,7 @@
 
 # source $(brew --prefix nvm)/nvm.sh
 
-export PATH="${HOME}/.rbenv/bin:${PATH}"
+# export PATH="${HOME}/.rbenv/bin:${PATH}"
 # eval "$(rbenv init - zsh --no-rehash)"
 # export PATH="/usr/local/opt/openssl/bin:${PATH}"
 
