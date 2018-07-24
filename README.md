@@ -2,7 +2,6 @@
 
 A place to store my dotfiles. Mostly symlink based.
 
-
 ## Home Directory symlinks
 ```bash
 lrwxr-xr-x    1 dliggat  staff      43 29 Aug 20:42 .bash_profile -> /Users/dliggat/git/me/dotfiles/bash_profile
