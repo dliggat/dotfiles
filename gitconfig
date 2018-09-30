@@ -25,7 +25,8 @@ editor = vim
 excludesfile = ~/.gitignore
 
 [credential]
-	helper = osxkeychain
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
 
 [hub]
 protocol = https

@@ -42,6 +42,11 @@
 	"ignored_packages":
 	[
 	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
 	"overlay_scroll_bars": "enabled",
 	"preview_on_click": false,
 	"remember_open_files": false,
