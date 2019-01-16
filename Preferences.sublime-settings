@@ -20,6 +20,7 @@
 		"*.tgz",
 		"*.scssc"
 	],
+	"color_scheme": "Packages/Monokai Dark/Monokai Dark.tmTheme",
 	"draw_white_space": "selection",
 	"enable_count_chars": true,
 	"ensure_newline_at_eof_on_save": true,
@@ -32,10 +33,11 @@
 		"_deploy",
 		"dist",
 		"node_modules",
+		"__pycache__",
 		"tmp"
 	],
 	"font_face": "Monaco",
-	"font_size": 16.0,
+	"font_size": 19.0,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
@@ -57,6 +59,7 @@
 	"soda_classic_tabs": true,
 	"tab_completion": true,
 	"tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"use_simple_full_screen": true,

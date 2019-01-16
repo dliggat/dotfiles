@@ -12,6 +12,8 @@ alias pynew='pyenv virtualenv'
 alias pyact='pyenv activate'
 alias pydeact='pyenv deactivate'
 
+alias st='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" -n'
+
 alias beg='bundle exec guard'
 alias drb='bundle exec spork'
 alias spec='bundle exec rspec -b -c'
