@@ -22,3 +22,5 @@ function aws-set {
 
 aws-set 'dliggat' 'false'
 
+alias awsv="aws-vault"
+export PATH="$DOTFILES/scripts:$PATH"

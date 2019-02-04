@@ -1,0 +1,10 @@
+#!/bin/bash
+
+AWS=/Users/${USER}/.pyenv/shims/aws
+
+if [[ ${AWS_DEFAULT_PROFILE} == isen* ]] ;
+then
+    exec ${AWS} "$@"
+else
+exec aws-vault exec "${AWS_DEFAULT_PROFILE}" -- /Users/${USER}/.pyenv/shims/aws "$@"
+fi
