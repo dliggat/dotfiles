@@ -20,6 +20,10 @@ function aws-set {
   fi
 }
 
+function aws-login {
+  echo $(aws-vault login $AWS_DEFAULT_PROFILE -s)
+}
+
 aws-set 'dliggat' 'false'
 
 alias awsv="aws-vault"
