@@ -26,3 +26,7 @@ function do_sync {
   git pull origin master -X theirs
   git push origin master
 }
+
+function bandwidth {
+  echo "$(echo "en$(route get cachefly.cachefly.net | grep interface | sed -n -e 's/^.*en//p')") $(wget http://cachefly.cachefly.net/100mb.test -O /dev/null --report-speed=bits 2>&1 | grep '\([0-9.]\+ [KMG]b/s\)')"
+}
