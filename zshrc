@@ -153,6 +153,5 @@ export PATH="$DOTFILES/scripts:$PATH"
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
 do
-  echo $zsh_config
   source $zsh_config
 done
