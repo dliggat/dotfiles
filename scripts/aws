@@ -2,9 +2,12 @@
 
 AWS=/Users/${USER}/.pyenv/shims/aws
 
-if [[ ${AWS_DEFAULT_PROFILE} == isen* ]] ;
+if [[ ${AWS_PROFILE} == isen* ]] ;
 then
+    # Named profiles starting with "isen" will authenticate via
+    # the Isengard plugin for the AWS CLI.
     exec ${AWS} "$@"
 else
-    exec aws-vault exec "${AWS_DEFAULT_PROFILE}" -- /Users/${USER}/.pyenv/shims/aws "$@"
+    # Other profiles will lookup credentials via aws-vault.
+    exec aws-vault exec "${AWS_PROFILE}" -- ${AWS} "$@"
 fi
