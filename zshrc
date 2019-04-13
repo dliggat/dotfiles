@@ -108,8 +108,8 @@ python_virtualenv() {
   echo $(pyenv version | cut -f 1 -d' ')
 }
 
-RPROMPT='$(git_custom_status)%{$fg[yellow]%}[$(aws_profile)]%{$fg_bold[blue]%}[$(python_virtualenv)]%{$reset_color%}'
-PROMPT='%{$fg[cyan]%}[$(display_path)]%(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
+RPROMPT='$(git_custom_status)%{$reset_color%}'
+PROMPT='%{$fg[yellow]%}[$(aws_profile)] %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 
 
 
@@ -126,6 +126,9 @@ eval "$(pyenv virtualenv-init -)"
 
 #### AWS ######################################################################
 function aws-set {
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_SESSION_TOKEN
   export AWS=$1
   export AWS_DEFAULT_PROFILE=$AWS
   export AWS_PROFILE=$AWS
