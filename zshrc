@@ -3,6 +3,8 @@
 #### OPTIONS ##################################################################
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+unsetopt inc_append_history
+unsetopt share_history
 
 #### VARIABLES ################################################################
 export DOTFILES=$HOME/git/me/dotfiles
@@ -29,6 +31,7 @@ alias pydeact='pyenv deactivate'
 alias dotfiles="st ~/git/me/dotfiles"
 alias work="cd ~/git/proserve; st ."
 
+alias nb="jupyter notebook"
 
 #### FUNCTIONS ################################################################
 function ts {
@@ -71,11 +74,14 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 
+eval "$(starship init zsh)"
+
+
 #### PROMPT ###################################################################
-PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
-PROMPT_SUFFIX="]%{$reset_color%}"
-PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
-PROMPT_CLEAN=""
+# PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
+# PROMPT_SUFFIX="]%{$reset_color%}"
+# PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
+# PROMPT_CLEAN=""
 
 git_custom_status() {
   local cb=$(current_branch)
@@ -108,8 +114,8 @@ python_virtualenv() {
   echo $(pyenv version | cut -f 1 -d' ')
 }
 
-RPROMPT='$(git_custom_status)%{$reset_color%}'
-PROMPT='%{$fg[yellow]%}[$(aws_profile)] %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
+# RPROMPT='$(git_custom_status)%{$reset_color%}'
+# PROMPT='%{$fg[yellow]%}[$(aws_profile)] %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
 
 
 
@@ -124,6 +130,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv virtualenv-init -)"
 
 
+
+#### RUBY #####################################################################
+eval "$(rbenv init -)"
+
+
 #### AWS ######################################################################
 function aws-set {
   unset AWS_ACCESS_KEY_ID
@@ -133,17 +144,17 @@ function aws-set {
   export AWS_DEFAULT_PROFILE=$AWS
   export AWS_PROFILE=$AWS
 
-  export AWS_REGION=$(grep --after-context=2 "\[profile ${AWS}\]" ~/.aws/config |
-                      grep 'region'                                             |
-                      sed -e 's#.*=\(\)#\1#'                                    |
-                      xargs)
-  export AWS_DEFAULT_REGION="${AWS_REGION}"
+  # export AWS_REGION=$(grep --after-context=2 "\[profile ${AWS}\]" ~/.aws/config |
+  #                     grep 'region'                                             |
+  #                     sed -e 's#.*=\(\)#\1#'                                    |
+  #                     xargs)
+  # export AWS_DEFAULT_REGION="${AWS_REGION}"
 
   if [[ "${2:-true}" = "true" ]]; then
     echo "AWS_PROFILE         : ${AWS_PROFILE}"
     echo "AWS_DEFAULT_PROFILE : ${AWS_DEFAULT_PROFILE}"
-    echo "AWS_REGION          : ${AWS_REGION}"
-    echo "AWS_DEFAULT_REGION  : ${AWS_DEFAULT_REGION}"
+    # echo "AWS_REGION          : ${AWS_REGION}"
+    # echo "AWS_DEFAULT_REGION  : ${AWS_DEFAULT_REGION}"
     echo
   fi
 }
@@ -174,10 +185,13 @@ function aws-assume {
 }
 
 
-
+alias AWS="/Users/${USER}/.pyenv/shims/aws"
 alias awsv="aws-vault"
 export PATH="$DOTFILES/scripts:$PATH"
 
+
+#### PATH #####################################################################
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
 
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)

@@ -20,7 +20,7 @@
 		"*.tgz",
 		"*.scssc"
 	],
-	"color_scheme": "Packages/Monokai Dark/Monokai Dark.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"draw_white_space": "selection",
 	"enable_count_chars": true,
 	"ensure_newline_at_eof_on_save": true,
@@ -33,6 +33,7 @@
 		"_deploy",
 		"dist",
 		"node_modules",
+		".terraform",
 		"__pycache__",
 		"tmp"
 	],
