@@ -16,13 +16,13 @@ today = !git log --since=midnight --author=\"$(git config user.name)\" --oneline
 ui = true
 
 [user]
-name = Dave Liggat
+	name = Dave Liggat
 	email = dliggat@amazon.com
 	useconfigonly = true
 
 [core]
 editor = vim
-excludesfile = ~/.gitignore
+	excludesfile = /Users/dliggat/.gitignore
 
 [credential]
 	# helper = !aws codecommit credential-helper $@
@@ -39,3 +39,11 @@ default = simple
 	prompt = false
 [rebase]
 	autosquash = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/dliggat/.stCommitMsg
