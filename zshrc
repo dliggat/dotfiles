@@ -21,7 +21,7 @@ alias ll='ls -lha'
 alias pass1="pwgen -1 -sy 20 | tr -d '\n' | pbcopy"
 alias pgen='pwgen -sy 20'
 alias sha1sum='shasum'
-alias st='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" -n'
+alias sublime='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" -n'
 alias tf='terraform'
 
 alias pynew='pyenv virtualenv'
