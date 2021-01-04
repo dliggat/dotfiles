@@ -28,10 +28,12 @@ alias pynew='pyenv virtualenv'
 alias pyact='pyenv activate'
 alias pydeact='pyenv deactivate'
 
-alias dotfiles="st ~/git/me/dotfiles"
-alias work="cd ~/git/proserve; st ."
+alias dotfiles="code ~/git/me/dotfiles"
+alias work="cd ~/git/proserve; code ."
 
 alias nb="jupyter notebook"
+alias aws2="/usr/local/bin/aws"
+alias ic="isengardcli credentials"
 
 #### FUNCTIONS ################################################################
 function ts {
@@ -129,10 +131,10 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv virtualenv-init -)"
 
-
+export PATH="$HOME/.toolbox/bin:$PATH"
 
 #### RUBY #####################################################################
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 
 #### AWS ######################################################################
@@ -192,6 +194,7 @@ export PATH="$DOTFILES/scripts:$PATH"
 
 #### PATH #####################################################################
 export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
