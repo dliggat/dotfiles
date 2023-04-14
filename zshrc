@@ -112,9 +112,6 @@ aws_profile() {
   fi
 }
 
-python_virtualenv() {
-  echo $(pyenv version | cut -f 1 -d' ')
-}
 
 # RPROMPT='$(git_custom_status)%{$reset_color%}'
 # PROMPT='%{$fg[yellow]%}[$(aws_profile)] %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
@@ -123,15 +120,19 @@ python_virtualenv() {
 
 
 #### PYTHON ###################################################################
+python_virtualenv() {
+  echo $(pyenv version | cut -f 1 -d' ')
+}
+
 export PYENV_ROOT="${HOME}/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="$PYENV_ROOT/shims:$PATH"
+# eval "$(pyenv virtualenv-init -)"
 
-export PATH="$HOME/.toolbox/bin:$PATH"
+# export PATH="$HOME/.toolbox/bin:$PATH"
 
 #### RUBY #####################################################################
 #eval "$(rbenv init -)"
@@ -187,8 +188,8 @@ function aws-assume {
 }
 
 
-alias AWS="/Users/${USER}/.pyenv/shims/aws"
-alias awsv="aws-vault"
+# alias AWS="/Users/${USER}/.pyenv/shims/aws"
+# alias awsv="aws-vault"
 export PATH="$DOTFILES/scripts:$PATH"
 
 
