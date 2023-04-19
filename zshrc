@@ -12,12 +12,19 @@ export EDITOR="st"
 export SYNC_DIR="/Users/${USER}/appsync"
 
 
+#### PATH #####################################################################
+#export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+#export PATH="$HOME/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+
+
 #### ALIASES ##################################################################
 alias fd='find . -type d | sort'
 alias ff='find . -type f | sort'
 alias grep='grep --color=auto'
 alias k9='kill -9'
 alias ll='ls -lha'
+alias ls='ls -G'
 alias pass1="pwgen -1 -sy 20 | tr -d '\n' | pbcopy"
 alias pgen='pwgen -sy 20'
 alias sha1sum='shasum'
@@ -29,17 +36,15 @@ alias pyact='pyenv activate'
 alias pydeact='pyenv deactivate'
 
 alias dotfiles="code ~/git/me/dotfiles"
-alias work="cd ~/git/proserve; code ."
 
-alias nb="jupyter notebook"
-alias aws2="/usr/local/bin/aws"
 alias ic="isengardcli credentials"
+alias stree='open -a SourceTree .'
 
 #### FUNCTIONS ################################################################
-function ts {
-  iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
-  echo $iso_stamp
-}
+# function ts {
+#   iso_stamp=`date +"%Y-%m-%d %H:%M:%S"`
+#   echo $iso_stamp
+# }
 
 function iso {
   iso_stamp=`date +"%Y-%m-%d"`
@@ -68,15 +73,21 @@ function bandwidth {
 
 
 #### OH MY ZSH ################################################################
-export ZSH=$HOME/.oh-my-zsh  # Path to your oh-my-zsh installation.
+#export ZSH=$HOME/.oh-my-zsh  # Path to your oh-my-zsh installation.
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 plugins=(git)
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 
 eval "$(starship init zsh)"
+
+
+#### NODE #####################################################################
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 #### PROMPT ###################################################################
@@ -125,14 +136,12 @@ python_virtualenv() {
 }
 
 export PYENV_ROOT="${HOME}/.pyenv"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
-# export PATH="$PYENV_ROOT/shims:$PATH"
-# eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv virtualenv-init -)"
 
-# export PATH="$HOME/.toolbox/bin:$PATH"
 
 #### RUBY #####################################################################
 #eval "$(rbenv init -)"
@@ -193,9 +202,6 @@ function aws-assume {
 export PATH="$DOTFILES/scripts:$PATH"
 
 
-#### PATH #####################################################################
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
 
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
