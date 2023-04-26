@@ -3,8 +3,8 @@
 #### OPTIONS ##################################################################
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
-unsetopt inc_append_history
-unsetopt share_history
+setopt inc_append_history
+setopt share_history
 
 #### VARIABLES ################################################################
 export DOTFILES=$HOME/git/me/dotfiles
@@ -136,7 +136,7 @@ python_virtualenv() {
 }
 
 export PYENV_ROOT="${HOME}/.pyenv"
-# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
