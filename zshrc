@@ -8,14 +8,16 @@ setopt share_history
 
 #### VARIABLES ################################################################
 export DOTFILES=$HOME/git/me/dotfiles
-export EDITOR="st"
+export EDITOR="code"
 export SYNC_DIR="/Users/${USER}/appsync"
+export NOTES_DIR="/Users/${USER}/git/me/text_notes"
 
 
 #### PATH #####################################################################
 #export PATH="/usr/local/opt/php@7.2/bin:$PATH"
 #export PATH="$HOME/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$DOTFILES/scripts:$PATH"
 
 
 #### ALIASES ##################################################################
@@ -35,10 +37,15 @@ alias pynew='pyenv virtualenv'
 alias pyact='pyenv activate'
 alias pydeact='pyenv deactivate'
 
-alias dotfiles="code ~/git/me/dotfiles"
+alias dotfiles="$EDITOR ~/git/me/dotfiles"
+alias notes="$EDITOR $NOTES_DIR"
 
 alias ic="isengardcli credentials"
 alias stree='open -a SourceTree .'
+alias oldcd='cd'
+
+alias be='bundle exec'
+alias ber='bundle exec rake'
 
 #### FUNCTIONS ################################################################
 # function ts {
@@ -56,29 +63,29 @@ function tmpname {
   echo "tempfile_$name"
 }
 
-function do_sync {
-  set -x
-  osascript -e 'quit app "1Password"'
-  osascript -e 'quit app "Quiver"'
-  cd $SYNC_DIR
-  git add .
-  git commit -m "Committing from $(hostname) on $(date +%F)"
-  git pull origin master -X theirs
-  git push origin master
-}
+# function do_sync {
+#   set -x
+#   osascript -e 'quit app "1Password"'
+#   osascript -e 'quit app "Quiver"'
+#   cd $SYNC_DIR
+#   git add .
+#   git commit -m "Committing from $(hostname) on $(date +%F)"
+#   git pull origin master -X theirs
+#   git push origin master
+# }
 
-function bandwidth {
-  echo "$(echo "en$(route get cachefly.cachefly.net | grep interface | sed -n -e 's/^.*en//p')") $(wget http://cachefly.cachefly.net/100mb.test -O /dev/null --report-speed=bits 2>&1 | grep '\([0-9.]\+ [KMG]b/s\)')"
-}
+# function bandwidth {
+#   echo "$(echo "en$(route get cachefly.cachefly.net | grep interface | sed -n -e 's/^.*en//p')") $(wget http://cachefly.cachefly.net/100mb.test -O /dev/null --report-speed=bits 2>&1 | grep '\([0-9.]\+ [KMG]b/s\)')"
+# }
 
 
 #### OH MY ZSH ################################################################
-#export ZSH=$HOME/.oh-my-zsh  # Path to your oh-my-zsh installation.
+# export ZSH=$HOME/.oh-my-zsh  # Path to your oh-my-zsh installation.
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 plugins=(git)
-#source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 
 eval "$(starship init zsh)"
@@ -90,50 +97,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-#### PROMPT ###################################################################
-# PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
-# PROMPT_SUFFIX="]%{$reset_color%}"
-# PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
-# PROMPT_CLEAN=""
-
-git_custom_status() {
-  local cb=$(current_branch)
-  if [ -n "$cb" ]; then
-    echo "$(parse_git_dirty)%{$fg_bold[yellow]%}$(work_in_progress)%{$reset_color%}$PROMPT_PREFIX$(current_branch)$PROMPT_SUFFIX"
-  fi
-}
-
-# Display an abbreviated version of the `pwd`.
-display_path() {
-  local pwd_length=22
-  local canonical="`pwd -P`"
-  local lpwd="${canonical/#$HOME/~}"
-  if [ $(echo -n $lpwd | wc -c | tr -d " ") -gt $pwd_length ]
-    then newPWD="...$(echo -n $lpwd | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
-    else newPWD="$(echo -n $lpwd)"
-  fi
-  echo $newPWD
-}
-
-aws_profile() {
-  if [[ -z "$AWS" ]]; then
-    echo 'none'
-  else
-    echo "$AWS"
-  fi
-}
-
-
-# RPROMPT='$(git_custom_status)%{$reset_color%}'
-# PROMPT='%{$fg[yellow]%}[$(aws_profile)] %(?.%{$fg[green]%}.%{$fg[red]%})%B$%b '
-
-
-
-
 #### PYTHON ###################################################################
-python_virtualenv() {
-  echo $(pyenv version | cut -f 1 -d' ')
-}
+# python_virtualenv() {
+#   echo $(pyenv version | cut -f 1 -d' ')
+# }
 
 export PYENV_ROOT="${HOME}/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -144,7 +111,7 @@ eval "$(pyenv virtualenv-init -)"
 
 
 #### RUBY #####################################################################
-#eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"
 
 
 #### AWS ######################################################################
@@ -196,12 +163,10 @@ function aws-assume {
   fi
 }
 
-
-# alias AWS="/Users/${USER}/.pyenv/shims/aws"
-# alias awsv="aws-vault"
-export PATH="$DOTFILES/scripts:$PATH"
-
-
+#### ZOXIDE ###################################################################
+eval "$(zoxide init zsh)"
+compinit
+alias cd='z'
 
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
