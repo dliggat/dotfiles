@@ -1,4 +1,8 @@
 #!/bin/zsh
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+# Amazon Q pre block. Keep at the top of this file.
+#[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
 #### OPTIONS ##################################################################
 setopt HIST_IGNORE_ALL_DUPS
@@ -33,9 +37,9 @@ alias sha1sum='shasum'
 alias sublime='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" -n'
 alias tf='terraform'
 
-alias pynew='pyenv virtualenv'
-alias pyact='pyenv activate'
-alias pydeact='pyenv deactivate'
+# alias pynew='pyenv virtualenv'
+# alias pyact='pyenv activate'
+# alias pydeact='pyenv deactivate'
 
 alias dotfiles="$EDITOR ~/git/me/dotfiles"
 alias notes="$EDITOR $NOTES_DIR"
@@ -46,6 +50,9 @@ alias oldcd='cd'
 
 alias be='bundle exec'
 alias ber='bundle exec rake'
+
+alias k='/Users/dliggat/.local/bin/kiro-cli'
+alias kcli='/Users/dliggat/.local/bin/kiro-cli'
 
 #### FUNCTIONS ################################################################
 # function ts {
@@ -61,6 +68,10 @@ function iso {
 function tmpname {
   local name=`date +"%Y-%m-%d_%H-%M-%S"`
   echo "tempfile_$name"
+}
+
+function uktime {
+  TZ='Europe/London' date -Iseconds
 }
 
 # function do_sync {
@@ -102,12 +113,12 @@ export NVM_DIR="$HOME/.nvm"
 #   echo $(pyenv version | cut -f 1 -d' ')
 # }
 
-export PYENV_ROOT="${HOME}/.pyenv"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="${HOME}/.pyenv"
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 
 #### RUBY #####################################################################
@@ -163,13 +174,27 @@ function aws-assume {
   fi
 }
 
-#### ZOXIDE ###################################################################
-eval "$(zoxide init zsh)"
-compinit
-alias cd='z'
 
 #### FINAL: LOCAL FILES #######################################################
 for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
 do
   source $zsh_config
 done
+
+# Amazon Q post block. Keep at the bottom of this file.
+#[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH=$PATH:/Users/dliggat/.toolbox/bin
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+
+# Added by Antigravity
+export PATH="/Users/dliggat/.antigravity/antigravity/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

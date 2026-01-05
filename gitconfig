@@ -47,3 +47,5 @@ default = simple
 	trustExitCode = true
 [commit]
 	template = /Users/dliggat/.stCommitMsg
+[init]
+	defaultBranch = main

@@ -1,3 +1,4 @@
 {
-  "editor.selectionHighlight": false
+  "editor.selectionHighlight": false,
+  "kiroAgent.configureMCP": "Disabled"
 }
