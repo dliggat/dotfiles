@@ -11,7 +11,7 @@ setopt inc_append_history
 setopt share_history
 
 #### VARIABLES ################################################################
-export DOTFILES=$HOME/git/me/dotfiles
+export DOTFILES=$HOME/git/dotfiles
 export EDITOR="code"
 export SYNC_DIR="/Users/${USER}/appsync"
 export NOTES_DIR="/Users/${USER}/git/me/text_notes"
@@ -103,9 +103,17 @@ eval "$(starship init zsh)"
 
 
 #### NODE #####################################################################
+# Lazy-load NVM for faster shell startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm node npm npx
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
+node() { nvm use default >/dev/null 2>&1; unset -f node; node "$@"; }
+npm() { nvm use default >/dev/null 2>&1; unset -f npm; npm "$@"; }
+npx() { nvm use default >/dev/null 2>&1; unset -f npx; npx "$@"; }
 
 
 #### PYTHON ###################################################################
@@ -122,7 +130,12 @@ export NVM_DIR="$HOME/.nvm"
 
 
 #### RUBY #####################################################################
-eval "$(rbenv init - zsh)"
+# # Lazy-load rbenv for faster shell startup
+# rbenv() {
+#   unset -f rbenv
+#   eval "$(command rbenv init - zsh)"
+#   rbenv "$@"
+# }
 
 
 #### AWS ######################################################################
@@ -176,8 +189,7 @@ function aws-assume {
 
 
 #### FINAL: LOCAL FILES #######################################################
-for zsh_config in $(ls $DOTFILES/*.local.zsh 2>/dev/null | sort)
-do
+for zsh_config in $DOTFILES/*.local.zsh(N); do
   source $zsh_config
 done
 
@@ -185,16 +197,7 @@ done
 #[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 
-export PATH=$PATH:/Users/dliggat/.toolbox/bin
+# export PATH=$PATH:/Users/dliggat/.toolbox/bin
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
-
-# Added by Antigravity
-export PATH="/Users/dliggat/.antigravity/antigravity/bin:$PATH"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
